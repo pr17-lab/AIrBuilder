@@ -13,7 +13,7 @@ function Home() {
       </div>
 
       {/*About*/}
-      <div className='conatiner my-5'>
+      <div className='container my-5'>
         <h1 className='text-center my-5'>Whats AI rBuilder</h1>
           <div className='row align-items-center'>
             <div className='col-lg-1'></div>
@@ -26,7 +26,7 @@ function Home() {
             </div>
             <div className='col-lg-1'></div>
             <div className='col-lg-5'>
-              <img style={{height:"75%",width:"90%"}} className='img-fluid' src="/about.png" alt="About" />
+              <img style={{height:"75%"}}  className='img-fluid ' src="/about.png" alt="About" />
             </div>
           </div>
       </div>
