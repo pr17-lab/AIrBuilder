@@ -15,12 +15,16 @@ import StepLabel from '@mui/material/StepLabel';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
+import { FaXmark } from "react-icons/fa6";
+
 const style = {
   position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: 700,
+  maxHeight: '80vh',
+  overflowY: 'auto',
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
@@ -61,20 +65,43 @@ function Edit() {
                   </Select>
                 </FormControl>
               </div>
-              <h3>Contact details</h3>
-              <div className='row p-3'>
-                <TextField id="standard-basic-email" label="E-mail" variant="standard" />
-                <TextField id="standard-basic-contact" label="Contact number" variant="standard" />
-                <TextField id="standard-basic-linkedin" label="LinkedIn Link" variant="standard" />
-                <TextField id="standard-basic-github" label="Githb Link" variant="standard" />
+              <div className='mt-3'>
+                <h3>Contact details</h3>
+                <div className='row p-3'>
+                  <TextField id="standard-basic-email" label="E-mail" variant="standard" />
+                  <TextField id="standard-basic-contact" label="Contact number" variant="standard" />
+                  <TextField id="standard-basic-linkedin" label="LinkedIn Link" variant="standard" />
+                  <TextField id="standard-basic-github" label="Githb Link" variant="standard" />
+                </div>
               </div>
-              <h3>Educational details</h3>
-              <div className='row p-3'>
-                <TextField id="standard-basic-degree" label="Bachelors Degree" variant="standard" />
-                <TextField id="standard-basic-college" label="University/college" variant="standard" />
-                <TextField id="standard-basic-year" label="Year of graduation" variant="standard" />
+              <div className='mt-3'>
+                <h3>Educational details</h3>
+                <div className='row p-3'>
+                  <TextField id="standard-basic-degree" label="Bachelors Degree" variant="standard" />
+                  <TextField id="standard-basic-college" label="University/college" variant="standard" />
+                  <TextField id="standard-basic-year" label="Year of graduation" variant="standard" />
+                </div>
+              </div>
+              <div className='mt-3' >
+                <h3>Skills</h3>
+                <div className='d-flex p-3'>
+                  <input type="text" className='form-control' placeholder='Add skills' />
+                  <button className='btn'>Add</button>
+                </div>
+                <h5>Added skills</h5>
+                <div className='d-flex justify-content-between flex-wrap'>
+                  <Button variant='contained'>Skill<FaXmark className='ms-3' /></Button>
+                </div>
+              </div>
+              {/* Summary */}
+              <div className='mt-3'>
+                <h3>Summary</h3>
+                <div className='row p-3'>
+                  <TextField id='summary' label='Summary' variant='standard'></TextField></div>
               </div>
             </div>
+            {/* Update button */}
+            <button className='btn btn-primary mt-3'>Update CV</button>
           </Box>
         </Box>
       </Modal>
