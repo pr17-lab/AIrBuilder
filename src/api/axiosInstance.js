@@ -7,7 +7,7 @@ const axiosinstance=axios.create({
 
 // global error handling
 
-axiosinstance.interceptors.use(
+axiosinstance.interceptors.response.use(
     (response)=>{
         console.log("API response recived");
         return response
