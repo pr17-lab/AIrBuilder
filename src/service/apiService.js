@@ -9,4 +9,13 @@ export const saveResumeApi=async (resumeDetails)=>{
 export const viewResumeApi=async(resumeId)=>{
    return await axiosService("GET", `/resumes/${resumeId}`, {});
 }
+// view all resume API: called by saved component when the page loads in browser
+export const getAllResumeApi=async()=>{
+   return await axiosService("GET", `/resumes`, {});
+}
+
+// view all resume API: called by saved component when delete button clicks
+export const deleteAllResumeApi=async(resumeId)=>{
+   return await axiosService("DELETE", `/resumes/${resumeId}`, {});
+}
 export default saveResumeApi;

@@ -38,9 +38,9 @@ function View() {
             {/* edit */}
             <Edit/>
             {/* all resume */}
-            <Link to={'/all-resumes'} style={{color:'#4d321d'}} className='btn mx-2'><IoMdRefreshCircle />All resume</Link>
+            {/* <Link to={'/all-resumes'} style={{color:'#4d321d'}} className='btn mx-2'><IoMdRefreshCircle />All resume</Link> */}
             {/* download history */}
-            <Link to={'/downloads'} style={{color:'#4d321d'}} className='btn mx-2'><FiFileText />Download history</Link>
+            {/* <Link to={'/downloads'} style={{color:'#4d321d'}} className='btn mx-2'><FiFileText />Download history</Link> */}
             {/* back */}
             <Link to={'/resume-details'} style={{color:'#4d321d'}} className='btn mx-2'><FaBackward />Previous</Link>
           </div>
