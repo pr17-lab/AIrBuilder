@@ -18,4 +18,8 @@ export const getAllResumeApi=async()=>{
 export const deleteAllResumeApi=async(resumeId)=>{
    return await axiosService("DELETE", `/resumes/${resumeId}`, {});
 }
+// Update resumes API: called by Edit component when update button clicks
+export const editAllResumeApi=async(resumeId,resumeDetails)=>{
+   return await axiosService("PUT", `/resumes/${resumeId}`,resumeDetails );
+}
 export default saveResumeApi;

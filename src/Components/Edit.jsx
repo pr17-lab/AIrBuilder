@@ -5,19 +5,16 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { FaUserEdit } from "react-icons/fa";
 import { FormControl, TextField } from '@mui/material';
-import { FiFileText } from "react-icons/fi";
-import { IoMdRefreshCircle } from "react-icons/io";
 import { Link } from 'react-router-dom';
 import Preview from '../Components/Preview';
-import Stepper from '@mui/material/Stepper';
-import Step from '@mui/material/Step';
-import StepLabel from '@mui/material/StepLabel';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import { FaXmark } from "react-icons/fa6";
 import jobRole from '../assets/jobRole.json'
 import { toast } from 'react-toastify';
+import { editAllResumeApi } from '../service/apiService';
+
 
 
 const style = {
@@ -44,19 +41,39 @@ function Edit({ resumeDetails, setResumeDetails }) {
   const addSkill = (skill) => {
     if (skill) {
       if (resumeDetails?.skills?.map(item => item.toLowerCase())
-        .includes(skill.toLowerCase())) 
-        {
+        .includes(skill.toLowerCase())) {
         toast.info("Given skill is alreadyavailable, please add another")
-        }
+      }
       else {
         setResumeDetails({ ...resumeDetails, skills: [...resumeDetails?.skills, skill] })
       }
     }
-    else{
+    else {
       toast.warning("Please enter a valid input!!!")
     }
   }
+
+  const handleEditResume = async () => {
+    // make api call to edit resume whenever the update button clicks
+    const { fullname, location, job, phone, email, github, linkedin, degree, college, year, skills, summary } = resumeDetails
+    if (fullname && location && job && phone && email && github && linkedin && degree && college && year && skills.length > 0 && summary) {
+      // make api call
+      const response = await editAllResumeApi(resumeDetails.id, resumeDetails)
+      console.log(response);
+      if (response.status === 200) {
+        toast.success("Resume updated  successfully")
+        setTimeout(() => {
+          handleClose()
+        }, 2500);
+      }
+
+    } else {
+      toast.error("Please fill the form completely")
+    }
+  }
+
   
+
   return (
     <div>
       <Button style={{ color: '#4d321d' }} className='btn' onClick={handleOpen}><FaUserEdit />Edit CV</Button>
@@ -121,17 +138,17 @@ function Edit({ resumeDetails, setResumeDetails }) {
               <div className='mt-3' >
                 <h3>Skills</h3>
                 <div className='d-flex p-3'>
-                  <input ref={skillRef} 
-                  type="text" 
-                  className='form-control' 
-                  placeholder='Add skills' />
-                  <button onClick={()=>{addSkill(skillRef.current.value)}} className='btn'>Add</button>
+                  <input ref={skillRef}
+                    type="text"
+                    className='form-control'
+                    placeholder='Add skills' />
+                  <button onClick={() => { addSkill(skillRef.current.value) }} className='btn'>Add</button>
                 </div>
                 <h5>Added skills</h5>
                 <div className='d-flex justify-content-between flex-wrap'>
                   {
                     resumeDetails?.skills?.map(skill => (
-                      <Button onClick={() => (removeSkill(skill))} className='my-2 mx-3' variant='contained'>{skill}<FaXmark className='ms-3' /></Button>))
+                      <Button onClick={() => (removeSkill(skill))} className='my-2 ms-1' variant='contained'>{skill}<FaXmark className='ms-2' /></Button>))
                   }
                 </div>
               </div>
@@ -143,7 +160,7 @@ function Edit({ resumeDetails, setResumeDetails }) {
               </div>
             </div>
             {/* Update button */}
-            <button className='btn btn-primary mt-3'>Update CV</button>
+            <button onClick={handleEditResume} className='btn btn-primary mt-3'>Update CV</button>
           </Box>
         </Box>
       </Modal>
