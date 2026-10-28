@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import { FaRegTrashAlt } from "react-icons/fa";
 import { deleteAllResumeApi, getAllResumeApi } from '../service/apiService';
 import { FaSearch } from "react-icons/fa";
@@ -7,21 +7,25 @@ import { FaSearch } from "react-icons/fa";
 function Saved() {
 
   const [allResumes, setAllResumes] = useState([])
-  const [searchKey,setSearchKey]=useState("")
-  console.log(allResumes);
+  const [searchKey, setSearchKey] = useState("")
+  const [dummyAllResumes, setDummyAllResumes] = useState([])
+
+  console.log(searchKey);
 
   useEffect(() => {
-    searchKey==""? getAllResume(): searchhCandidate()
+    getAllResume()
+  }, [])
+
+  const serachInput = useMemo(() => {
+    setAllResumes(dummyAllResumes.filter(item => item.job.toLowerCase().includes(searchKey.toLowerCase())))
   }, [searchKey])
 
-  const searchhCandidate=()=>{
-    setAllResumes(allResumes.filter(item=>item.job.toLowerCase().includes(searchKey.toLowerCase())))
-  }
   const getAllResume = async () => {
     const response = await getAllResumeApi();
 
     if (response.status === 200) {
-      setAllResumes(response.data);
+      setAllResumes(response.data)
+      setDummyAllResumes(response.data)
     }
   };
 
@@ -40,8 +44,8 @@ function Saved() {
       <h1>All Saved Resume</h1>
       <div className='d-flex justify-content-center align-items-center w-50'>
         <input onChange={(e) => setSearchKey(e.target.value)} type="text" placeholder='Search candidate by their job name' className='form-control' />
-        <FaSearch style={{marginLeft:'-30px'}} />
-        </div>
+        <FaSearch style={{ marginLeft: '-30px' }} />
+      </div>
       <table className="table table-hover table-striped my-5">
         <thead className='table-dark'>
           <tr>

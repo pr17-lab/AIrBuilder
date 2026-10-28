@@ -36,7 +36,7 @@ function View() {
             {/* download */}
             <button style={{ color: '#4d321d' }} className='btn'><FaFileDownload />Download CV</button>
             {/* edit */}
-            <Edit/>
+            <Edit resumeDetails={resume} setResumeDetails={setResume} />
             {/* all resume */}
             {/* <Link to={'/all-resumes'} style={{color:'#4d321d'}} className='btn mx-2'><IoMdRefreshCircle />All resume</Link> */}
             {/* download history */}
