@@ -17,8 +17,8 @@ function Preview({resumeDetails}) {
       <h2>Technical skills</h2>
       {/* dupliacte according to skill number */}
       {
-        resumeDetails?.skills.map(skills=>(
-          <span><Button variant='text' className='bg-dark text-light my-2 mx-1'>{skills}</Button></span>
+        resumeDetails?.skills?.map((skills, index)=>(
+          <span key={index}><Button variant='text' className='bg-dark text-light my-2 mx-1'>{skills}</Button></span>
         ))
       }
       
