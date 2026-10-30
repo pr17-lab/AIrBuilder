@@ -6,7 +6,6 @@ import Modal from '@mui/material/Modal';
 import { FaUserEdit } from "react-icons/fa";
 import { FormControl, TextField } from '@mui/material';
 import { Link } from 'react-router-dom';
-import Preview from '../Components/Preview';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
@@ -30,6 +29,7 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
+
 function Edit({ resumeDetails, setResumeDetails }) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -73,7 +73,6 @@ function Edit({ resumeDetails, setResumeDetails }) {
   }
 
   
-
   return (
     <div>
       <Button style={{ color: '#4d321d' }} className='btn' onClick={handleOpen}><FaUserEdit />Edit CV</Button>
